@@ -1,0 +1,38 @@
+name: Run Tests and Generate Coverage Report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      MONGODB_URL: ${{ secrets.MONGODB_URL }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+
+      - name: Run tests with code coverage
+        run: poetry run pytest --cov-fail-under=80
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
