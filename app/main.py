@@ -1,0 +1,32 @@
+import uvicorn
+from fastapi import FastAPI
+from beanie import init_beanie
+from app.config.settings import get_db
+from app.users.db import User
+from app.users.router import router as users_router
+from contextlib import asynccontextmanager
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_beanie(
+        database=get_db(),
+        document_models=[
+            User,
+        ],
+    )
+    yield
+
+
+app = FastAPI(
+    title="Engausa Academy API",
+    contact={"name": "Engausa Academy", "email": "hussainmaina27@gmail.com"},
+    lifespan=lifespan,
+)
+
+
+app.include_router(users_router)
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True, log_level="info")

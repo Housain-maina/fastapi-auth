@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "fastapi-auth"
+version = "0.1.0"
+description = "Ready made FastAPI authentication built with fastapi-users and MongoDB"
+authors = ["Hussaini Usman <hussainmaina27@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.104.0"
+uvicorn = "^0.23.2"
+pydantic = "^2.4.2"
+pydantic-settings = "^2.0.3"
+fastapi-users = {extras = ["beanie", "oauth"], version = "^12.1.2"}
+
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["d"], version = "^23.9.1"}
+pytest = "^7.4.2"
+pytest-asyncio = "^0.21.1"
+coverage = "^7.3.2"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+
+
