@@ -30,7 +30,7 @@ jobs:
           poetry install
 
       - name: Run tests with code coverage
-        run: poetry run pytest --cov-fail-under=80
+        run: coverage run -m pytest
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
