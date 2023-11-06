@@ -30,7 +30,7 @@ jobs:
           poetry install
 
       - name: Run tests with code coverage
-        run: coverage run -m pytest
+        run: poetry run coverage run -m pytest
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
