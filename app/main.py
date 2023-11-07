@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI
 from beanie import init_beanie
 from app.config.settings import get_db
@@ -26,7 +25,3 @@ app = FastAPI(
 
 
 app.include_router(users_router)
-
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True, log_level="info")
