@@ -62,7 +62,7 @@ class CustomUserManager(ObjectIDIDMixin, BaseUserManager[User, PydanticObjectId]
         self, user: models.UP, token: str, request: Optional[Request] = None
     ) -> str:
         # send the user an email with link to reset their password
-        return token
+        pass
 
     async def on_after_reset_password(
         self, user: models.UP, request: Optional[Request] = None
