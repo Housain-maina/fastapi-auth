@@ -1,4 +1,5 @@
 import pytest
+from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from app.config.settings import Settings
 from typing import Generator
@@ -20,7 +21,7 @@ def database():
 
 
 @pytest.fixture(scope="session")
-def app_instance():
+def app_instance() -> FastAPI:
     return app
 
 
