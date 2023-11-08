@@ -18,7 +18,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Engausa Academy API",
+    title="FastAPI Auth",
     contact={"name": "Engausa Academy", "email": "hussainmaina27@gmail.com"},
     lifespan=lifespan,
 )
